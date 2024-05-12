@@ -52,7 +52,7 @@ public class WarehouseRepository : IWarehouseRepository
         await using var connection = new SqlConnection(_configuration["ConnectionStrings:DefaultConnection"]);
         await connection.OpenAsync();
 
-        var query = "SELECT COUNT(*) FROM Order WHERE IdProduct = @idProduct AND Amount = @amount AND CreatedAt < @createdAt";
+        var query = "SELECT COUNT(*) FROM \"Order\" WHERE IdProduct = @idProduct AND Amount = @amount AND CreatedAt < @createdAt";
         await using var cmd = new SqlCommand(query, connection);
         cmd.Parameters.AddWithValue("@idProduct", idProduct);
         cmd.Parameters.AddWithValue("@amount", amount);
