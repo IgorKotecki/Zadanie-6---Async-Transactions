@@ -32,7 +32,7 @@ public class WarehouseService : IWarehouseService
         if (dto.Amount <= 0)
             throw new ValidationException("Amount must be greater than 0.");
 
-        var orderExists = await _warehouseRepository.CheckIfOrderExists(dtoIdProduct:dto.IdProduct.Value,dtoAmount: dto.Amount.Value);
+        var orderExists = await _warehouseRepository.CheckIfOrderExists(dtoIdProduct:dto.IdProduct.Value,dtoAmount: dto.Amount.Value,dto.CreatedAt.Value);
         if (!orderExists)
             throw new NotFoundException("Order with the provided identifier does not exist.");
 
